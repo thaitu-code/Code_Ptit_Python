@@ -1,5 +1,5 @@
 def check1(s):
-    s.split()
+    # s.split()
     for i in range(len(s)):
         if((int(s[i])) % 2 != 0):
             return False
@@ -13,7 +13,7 @@ t = int(input())
 for i in range(t):
     s = int(input())
     for i in range(22, s, 2):
-        if(check1(str(i)) and check3(str(i)) and check2(str(i))):
+        if(check3(str(i)) and check2(str(i)) and check1(str(i))):
             print(i,end= " ")
     print(end = "\n")
     
