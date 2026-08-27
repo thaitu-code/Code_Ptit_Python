@@ -1,3 +1,6 @@
+import math
+
+
 t = int(input())
 
 def sum(n):
@@ -7,14 +10,11 @@ def sum(n):
         n//=10
     return s
 def check(n):
-    tmp = n
-    n_reserve = 0
-    while(n > 0):
-        n_reserve = n_reserve * 10 + n % 10
-        n//=10
-    if(len(str(tmp)) == 1):
-        return False
-    return tmp == n_reserve
+    if(n < 2): return False
+    for i in range(2, int(math.sqrt(n)) + 1):
+        if(n % i == 0):
+            return False
+    return True
 for i in range(t):
     n = int(input())
     s = sum(n)
