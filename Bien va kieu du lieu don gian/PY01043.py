@@ -1,19 +1,26 @@
+q = ['2', '4', '6', '8']
+c = ['0', '2', '4', '6', '8']
 
-def check1(n):
-    tmp = n[::-1]
-    return tmp == n
-def check2(n):
-    for i in n:
-        if(int(int(i)) % 2 == 1): return False
-    return True
-def check3(n):
-    return len(n) % 2 == 0
+ans = []
+i = 0
 
+while(True):
+    if(len(ans) > 0 and int(ans[-1]) > 1000000):
+        break
+    start_pos = i
+    for j in range(start_pos, len(q)):
+        tmp = q[j] + q[j][::-1]
+        ans.append(tmp)
+        i+=1
+    for j in range(start_pos, len(q)):
+        for char in c:
+            q.append(q[j] + char)
 t = int(input())
-for i in range(t):
+while(t > 0):
     n = int(input())
-    for j in range(22, n, 2):
-        s = str(j)
-        if(check3(s) and check1(s) and check2(s) ):
-            print(j, end = " ") 
+    for char in ans:
+        if(int(char) < n):
+            print(char, end = " ")
+        else: break
     print()
+    t-=1
