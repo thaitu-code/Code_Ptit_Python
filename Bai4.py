@@ -1,38 +1,18 @@
-class sinhvien:
-    def __init__(self, masv, hoten, ml):
-        self.masv = masv
-        self.hoten = hoten
-        self.ml = ml
-        self.score = 0
-    def abs_check(self, x):
-        diem = 10
-        for i in x:
-            if(i == 'm'):
-                diem = max(0, diem - 1)
-            elif(i == 'v'):
-                diem = max(0, diem - 2)
-        return diem
-    def Printed(self):
-        print(f"{self.masv} {self.hoten} {self.ml} {self.score} ", end="")
-        if(self.score == 0):
-            print("KDDK")
-        print("\n")
+from datetime import datetime
 
-t = int(input())
-ds_sinhvien = []
-for i in range(t):
-    a = input()
-    b = input()
-    c = input()
-    ds_sinhvien.append(sinhvien(a, b, c))
-for i in range(t):
-    a = input().split()
-    for sv in ds_sinhvien:
-        if(sv.masv == a[0]):
-            sv.score = sv.abs_check(a[1])
-            break
-for sv in ds_sinhvien:
-    sv.Printed()
+n, m = map(int, input().split())
+monhoc = {}
+for i in range(n):
+    ma = input().strip()
+    ten = input().strip()
+    monhoc[ma] = ten
 
-
-
+lichthi = []
+for i in range(1, m + 1):
+    ma, ngay, gio , nhom = input().split()
+    d = datetime.strptime(ngay, "%d/%m/%Y")
+    g = datetime.strptime(gio, "%H:%M")
+    lichthi.append((d, g, ma, i, ngay, gio,nhom))
+lichthi.sort(key = lambda x:(x[0], x[1], x[2]))
+for d, g, ma, i, ngay, gio, nhom in lichthi:
+    print(f"T{i:03d} {ma} {monhoc[ma]} {ngay} {gio} {nhom}")
